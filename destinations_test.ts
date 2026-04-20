@@ -1,15 +1,15 @@
 import { assertEquals } from "@std/assert";
-import { destinations } from "./reisender_hase.ts";
+import { destinations } from "./destinations.ts";
 
 Deno.test("Dubi folgt auf Isti", () => {
   // Arrange
   const start = destinations.indexOf("Isti");
 
   // Act
-  const nextStepper = destinations[start + 1];
+  const nextDestination = destinations[start + 1];
 
   // Assert
-  assertEquals(nextStepper, "Dubi");
+  assertEquals(nextDestination, "Dubi");
 });
 
 Deno.test("Zypi folgt auf Dubi", () => {
@@ -17,8 +17,8 @@ Deno.test("Zypi folgt auf Dubi", () => {
   const start = destinations.indexOf("Dubi");
 
   // When
-  const nextStepper = destinations[start + 1];
+  const nextDestination = destinations[start + 1];
 
   // Then
-  assertEquals(nextStepper, "Zypi");
+  assertEquals(nextDestination, "Zypi");
 });

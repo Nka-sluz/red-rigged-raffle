@@ -1,36 +1,9 @@
-// __     __        _
-// \ \   / /__ _ __| | ___  ___ _   _ _ __   __ _
-//  \ \ / / _ \ '__| |/ _ \/ __| | | | '_ \ / _` |
-//   \ V /  __/ |  | | (_) \__ \ |_| | | | | (_| |
-//    \_/ \___|_|  |_|\___/|___/\__,_|_| |_|\__, |
+import { WinnerList } from "./winner_list.ts";
+import { Prize } from "./prize.ts";
 
-import { AbsneakenderHase } from "./absneakender_hase.ts";
-import { GewinnbarerHase } from "./gewinnbarer_hase.ts";
-
-export class Verlosung {
-  //  __________________________________
-  // < Main-Methode des Main-Characters >
-  //  ----------------------------------
-  //    \         __------~~-,
-  //     \      ,'            ,
-  //           /               \
-  //          /                :
-  //         |                  '
-  //         |                  |
-  //         |                  |
-  //          |   _--           |
-  //          _| =-.     .-.   ||
-  //          o|/o/       _.   |
-  //          /  ~          \ |
-  //        (____@)  ___~    |
-  //           |_===~~~.`    |
-  //        _______.--~     |
-  //        \________       |
-  //                 \      |
-  //               __/-___-- -__
-  //              /            _ \
+export class Raffle {
   public main() {
-    const redArmy = [
+    const contestants = [
       "@Gangsta2007",
       "@LockeDerBoss",
       "@MiiMiiSeinBruder",
@@ -81,23 +54,23 @@ export class Verlosung {
       "@PrinzPuma",
       "@PrinzPuma",
     ];
-    const fiktivePreise = [
-      new GewinnbarerHase("iPhone 17 Pro", 1),
-      new GewinnbarerHase("Trip nach Dubi", 1),
-      new GewinnbarerHase("Stepper nach Isti", 1),
-      new GewinnbarerHase("Flug nach Zypi", 1),
-      new GewinnbarerHase("10 kg Haribo", 2),
-      new GewinnbarerHase("PlayStation 5 Slim", 3),
-      new GewinnbarerHase("gebrauchte Sneaker", 5),
+    const prizes = [
+      new Prize("iPhone 17 Pro", 1),
+      new Prize("Trip nach Dubi", 1),
+      new Prize("Stepper nach Isti", 1),
+      new Prize("Flug nach Zypi", 1),
+      new Prize("10 kg Haribo", 2),
+      new Prize("PlayStation 5 Slim", 3),
+      new Prize("gebrauchte Sneaker", 5),
     ];
-    const luckyMuckies = new AbsneakenderHase(
-      redArmy,
-      fiktivePreise,
-    ).absneaken();
-    for (const [opfer, gewonnenerHase] of luckyMuckies.entries()) {
-      console.log(`${opfer} gewinnt ${gewonnenerHase}`);
+    const winners = new WinnerList(
+      contestants,
+      prizes,
+    ).generateList();
+    for (const [contestant, prize] of winners.entries()) {
+      console.log(`${contestant} gewinnt ${prize}`);
     }
   }
 }
 
-new Verlosung().main();
+new Raffle().main();
