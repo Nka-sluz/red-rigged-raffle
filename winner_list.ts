@@ -10,9 +10,7 @@ export class WinnerList {
     const winningContestants = new Array<string>();
     while (this.contestants.length > 0) {
       const randomN = Math.random();
-      const chosenContestantN = Math.floor(
-        randomN * this.contestants.length,
-      );
+      const chosenContestantN = Math.floor(randomN * this.contestants.length);
       const chosenContestant = this.contestants[chosenContestantN];
       winningContestants.push(chosenContestant);
       this.contestants.pop();
@@ -20,7 +18,10 @@ export class WinnerList {
     while (this.prizes.length > 0 && winningContestants.length > 0) {
       const prize = this.prizes[0];
       const prizeWinners = winningContestants.shift() || "";
-      winnerList.set(prizeWinners, prize.name);
+      if (winnerList.has(prizeWinners)) {
+        const prizeList = winnerList.get(prizeWinners) + `, ${prize.name}`;
+        winnerList.set(prizeWinners, prizeList);
+      } else winnerList.set(prizeWinners, prize.name);
       if (prize.quantity > 1) {
         this.prizes[0].quantity--;
       } else {
