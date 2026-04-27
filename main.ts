@@ -64,7 +64,7 @@ export class Raffle {
       new Prize("gebrauchte Sneaker", 5),
     ];
     const winners = new WinnerList(
-      contestants,
+      new Set([...contestants]),
       prizes,
     ).generateList();
     for (const [contestant, prize] of winners.entries()) {
