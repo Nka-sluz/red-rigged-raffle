@@ -21,10 +21,10 @@ export class WinnerList {
       const prize = this.prizes[0];
       const prizeWinners = winningContestants.shift() || "";
       winnerList.set(prizeWinners, prize.name);
-      if (prize.quantity > 0) {
-        this.prizes.shift();
-      } else {
+      if (prize.quantity > 1) {
         this.prizes[0].quantity--;
+      } else {
+        this.prizes.shift();
       }
     }
     return winnerList;
